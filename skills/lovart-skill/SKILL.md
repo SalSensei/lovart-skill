@@ -447,20 +447,35 @@ python3 {baseDir}/agent_skill.py chat --prompt "generate a video" --include-tool
 
 Lovart has two reasoning modes you can select per thread:
 
-- **`fast`** (default) — lightweight single-pass response. Use for simple, one-shot generations where speed matters.
-- **`thinking`** — deep structured reasoning with planning and multi-step analysis. Use for complex brand systems, multi-asset campaigns, anything that benefits from deliberate planning. Slower but higher quality.
+- **`fast`** (default) — lightweight single-pass response. Use for simple, one-shot image/video generations where speed matters.
+- **`thinking`** — deep structured reasoning with planning and multi-step analysis. Use for complex brand systems, multi-asset campaigns, **and any audio/music/BGM/TTS generation** (see audio note below). Slower but higher quality.
 
 Omitting `--mode` is equivalent to `--mode fast`, matching the web UI's default.
 
 ```bash
-# Thinking mode — strategic, multi-step
+# Thinking mode — strategic, multi-step, OR audio/music/BGM/TTS
 python3 {baseDir}/agent_skill.py chat --prompt "design a brand identity system for a sustainable coffee startup" --mode thinking --json --download
 
-# Fast mode — quick one-shot
+# Fast mode — quick one-shot image/video
 python3 {baseDir}/agent_skill.py chat --prompt "draw a cat" --mode fast --json --download
 ```
 
 **Mode is locked to the thread on its first message.** Once you start a thread with `--mode thinking`, subsequent messages on the same `--thread-id` stay in thinking mode regardless of later `--mode` flags. To switch modes, start a new thread (omit `--thread-id`).
+
+### ⚠️ Audio / Music / BGM / TTS requires `--mode thinking`
+
+Music, BGM, sound effects, and text-to-speech generation are **only available in `thinking` mode**. If the user asks for any of these, you MUST start a new thread with `--mode thinking` (or continue an existing thinking-mode thread).
+
+If you call `--mode fast` (or omit `--mode`) for an audio request, the Agent will pick the closest non-audio tool — usually a video model — and return a video file instead of audio, **while still charging credits**. There is no automatic refund.
+
+| User asks | What to do |
+|-----------|------------|
+| "generate BGM" / "make music" / "生成音乐" / "做一段配乐" / "背景音乐" | `--mode thinking` (new thread) |
+| "text to speech" / "TTS" / "voiceover" / "配音" / "朗读" | `--mode thinking` (new thread) |
+| "sound effect" / "音效" | `--mode thinking` (new thread) |
+| "draw" / "image" / "generate video" / 画 / 视频 | `--mode fast` is fine (default) |
+
+If the user's current thread is already in `fast` mode and they now want audio, tell them you'll start a new thread for the audio task, then call `chat` **without** `--thread-id` and with `--mode thinking`.
 
 ## Task-Specific Tool Selection (IMPORTANT)
 

@@ -181,18 +181,20 @@ python3 agent_skill.py threads
 
 通过 `--mode` 控制每次请求的 agent 推理方式：
 
-- **`fast`**（默认）— 轻量单轮响应。更快、更省，适合简单的一次性生成。
-- **`thinking`** — 深度结构化推理，先规划再执行，支持多步分析。适合复杂的品牌体系、多素材活动等需要深思熟虑的任务。速度稍慢但质量更高。
+- **`fast`**（默认）— 轻量单轮响应。更快、更省，适合简单的一次性图片/视频生成。
+- **`thinking`** — 深度结构化推理，先规划再执行，支持多步分析。适合复杂的品牌体系、多素材活动，**以及任何音频 / 音乐 / BGM / 配音 (TTS) 生成**（见下方说明）。速度稍慢但质量更高。
 
 ```bash
 # 快速单轮（默认）
 python3 agent_skill.py chat --prompt "画一只猫"
 
-# 深度推理
+# 深度推理，或音频 / 音乐 / BGM / 配音
 python3 agent_skill.py chat --prompt "设计一整套品牌识别" --mode thinking
 ```
 
 **模式在 thread 首条消息时锁定**。要切换模式请开新 thread（不传 `--thread-id`）。对齐 Lovart Web UI 的模式切换。
+
+> ⚠️ **音频 / 音乐 / BGM / 配音 (TTS) 必须使用 `--mode thinking`。** 在 `fast` 模式下，Agent 会选择最接近的非音频工具（通常是视频模型），返回一段视频文件而非音频，同时仍然扣除积分。无自动退款。如需 BGM、音乐、音效或文字转语音，请务必开新 thread 并使用 `--mode thinking`。
 
 ## ⚡ 生成模式
 
