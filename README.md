@@ -181,20 +181,18 @@ Available models:
 
 Control how the agent thinks per request via `--mode`:
 
-- **`fast`** (default) — lightweight single-pass response. Faster, cheaper, suitable for simple one-shot image / video generations.
-- **`thinking`** — deep structured reasoning with planning and multi-step analysis. Use for complex brand systems, multi-asset campaigns, **and any audio / music / BGM / TTS generation** (see note below). Slower but higher quality.
+- **`fast`** (default) — lightweight single-pass response. Faster, cheaper, suitable for simple one-shot generations.
+- **`thinking`** — deep structured reasoning with planning and multi-step analysis. Use for complex brand systems, multi-asset campaigns, anything that benefits from deliberate planning. Slower but higher quality.
 
 ```bash
 # Quick, single-shot (default)
 python3 agent_skill.py chat --prompt "draw a cat"
 
-# Deliberate, plan-first reasoning, or audio / music / BGM / TTS
+# Deliberate, plan-first reasoning
 python3 agent_skill.py chat --prompt "design a full brand identity" --mode thinking
 ```
 
 **Mode is locked to the thread on its first message.** To switch modes, start a new thread (omit `--thread-id`). Mirrors the Lovart web UI toggle.
-
-> ⚠️ **Audio / music / BGM / TTS requires `--mode thinking`.** In `fast` mode the agent will pick the closest non-audio tool (usually a video model) and return a video file instead of audio, while still charging credits. There is no automatic refund. If you want BGM, music, sound effects, or text-to-speech, always start a new thread with `--mode thinking`.
 
 ## ⚡ Billing modes
 
