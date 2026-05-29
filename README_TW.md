@@ -166,8 +166,6 @@ python3 agent_skill.py threads
 | 影片 | `generate_video_seedance_pro_v1_5` | Seedance 1.5 Pro |  |
 | 影片 | `generate_video_kling_v2_6` | Kling 2.6 | ⭐ |
 | 影片 | `generate_video_wan_v2_6` | Wan 2.6 |  |
-| 影片 | `generate_video_sora_v2_pro` | Sora 2 Pro | ⭐ |
-| 影片 | `generate_video_sora_v2` | Sora 2 | ⭐ |
 | 影片 | `generate_video_veo3_1` | Veo 3.1 | ⭐ |
 | 影片 | `generate_video_veo3_1_fast` | Veo 3.1 Fast | ⭐ |
 | 影片 | `generate_video_kling_omni_v1` | Kling O1 | ⭐ |

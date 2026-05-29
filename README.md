@@ -166,8 +166,6 @@ Available models:
 | VIDEO | `generate_video_seedance_pro_v1_5` | Seedance 1.5 Pro |  |
 | VIDEO | `generate_video_kling_v2_6` | Kling 2.6 | ⭐ Premium |
 | VIDEO | `generate_video_wan_v2_6` | Wan 2.6 |  |
-| VIDEO | `generate_video_sora_v2_pro` | Sora 2 Pro | ⭐ Premium |
-| VIDEO | `generate_video_sora_v2` | Sora 2 | ⭐ Premium |
 | VIDEO | `generate_video_veo3_1` | Veo 3.1 | ⭐ Premium |
 | VIDEO | `generate_video_veo3_1_fast` | Veo 3.1 Fast | ⭐ Premium |
 | VIDEO | `generate_video_kling_omni_v1` | Kling O1 | ⭐ Premium |

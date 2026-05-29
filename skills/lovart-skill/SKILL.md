@@ -413,8 +413,6 @@ Available models for `--prefer-models`:
 | `generate_video_seedance_pro_v1_5` | Seedance 1.5 Pro |
 | `generate_video_kling_v2_6` | Kling 2.6 |
 | `generate_video_wan_v2_6` | Wan 2.6 |
-| `generate_video_sora_v2_pro` | Sora 2 Pro |
-| `generate_video_sora_v2` | Sora 2 |
 | `generate_video_veo3_1` | Veo 3.1 |
 | `generate_video_veo3_1_fast` | Veo 3.1 Fast |
 | `generate_video_kling_omni_v1` | Kling O1 |
