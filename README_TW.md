@@ -174,6 +174,7 @@ python3 agent_skill.py threads
 | 影片 | `generate_video_hailuo_v2_3` | Hailuo 2.3 |  |
 | 影片 | `generate_video_veo3` | Veo 3 | ⭐ |
 | 影片 | `generate_video_vidu_q2` | Vidu Q2 |  |
+| 影片 | `generate_video_gemini_omni_flash` | Gemini Omni Flash | ⭐ |
 | 3D | `generate_3d_tripo` | Tripo |  |
 
 ## 🧠 推理模式

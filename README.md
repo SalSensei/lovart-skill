@@ -174,6 +174,7 @@ Available models:
 | VIDEO | `generate_video_hailuo_v2_3` | Hailuo 2.3 |  |
 | VIDEO | `generate_video_veo3` | Veo 3 | ⭐ Premium |
 | VIDEO | `generate_video_vidu_q2` | Vidu Q2 |  |
+| VIDEO | `generate_video_gemini_omni_flash` | Gemini Omni Flash | ⭐ Premium |
 | 3D | `generate_3d_tripo` | Tripo |  |
 
 ## 🧠 Reasoning modes

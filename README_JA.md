@@ -174,6 +174,7 @@ Agent が使用するモデルを制御する 3 つの方法：
 | 動画 | `generate_video_hailuo_v2_3` | Hailuo 2.3 |  |
 | 動画 | `generate_video_veo3` | Veo 3 | ⭐ |
 | 動画 | `generate_video_vidu_q2` | Vidu Q2 |  |
+| 動画 | `generate_video_gemini_omni_flash` | Gemini Omni Flash | ⭐ |
 | 3D | `generate_3d_tripo` | Tripo |  |
 
 ## 🧠 推論モード

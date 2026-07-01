@@ -421,6 +421,7 @@ Available models for `--prefer-models`:
 | `generate_video_hailuo_v2_3` | Hailuo 2.3 |
 | `generate_video_veo3` | Veo 3 |
 | `generate_video_vidu_q2` | Vidu Q2 |
+| `generate_video_gemini_omni_flash` | Gemini Omni Flash |
 
 **3D:**
 
