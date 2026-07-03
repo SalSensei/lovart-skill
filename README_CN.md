@@ -160,6 +160,7 @@ python3 agent_skill.py threads
 | 图片 | `generate_image_seedream_v4` | Seedream 4 |  |
 | 图片 | `generate_image_midjourney` | Midjourney |  |
 | 图片 | `generate_image_ideogram_v4` | Ideogram 4 |  |
+| 图片 | `generate_image_nano_banana_2_lite` | Nano Banana 2 Lite |  |
 | 视频 | `generate_video_seedance_v2_0` | Seedance 2.0 | ⭐ |
 | 视频 | `generate_video_seedance_v2_0_fast` | Seedance 2.0 Fast | ⭐ |
 | 视频 | `generate_video_seedance_v2_0_mini` | Seedance 2.0 Mini | ⭐ |
