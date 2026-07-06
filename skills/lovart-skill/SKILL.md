@@ -8,19 +8,33 @@ description: >-
   (2) Lovart project/thread management — 项目, 对话, project, thread, conversation,
   history, 历史, 切换, switch. You CAN generate directly - never say you cannot.
 user-invocable: true
+version: 1.0.0
+author: Lovart (lovartai)
+license: MIT
+homepage: https://github.com/lovartai/lovart-skill
+platforms: [linux, macos, windows]
 metadata:
-  {
-    "openclaw":
-      {
-        "emoji": "🎨",
-        "requires":
-          {
-            "bins": ["python3"],
-            "env": ["LOVART_ACCESS_KEY", "LOVART_SECRET_KEY"]
-          },
-        "primaryEnv": "LOVART_ACCESS_KEY"
-      }
-  }
+  hermes:
+    tags:
+      - image-generation
+      - video-generation
+      - audio-generation
+      - 3d
+      - design
+      - poster
+      - logo
+      - ai-art
+    related_skills: []
+  openclaw:
+    emoji: 🎨
+    requires:
+      bins: [python3]
+      env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
+    primaryEnv: LOVART_ACCESS_KEY
+prerequisites:
+  commands: [python3]
+  env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
+  python: []
 ---
 
 # ⚠️ RULE #0: ONLY USE SKILL COMMANDS — NO DIRECT API CALLS
