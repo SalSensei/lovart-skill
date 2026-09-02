@@ -227,6 +227,7 @@ python3 scripts/agent_skill.py threads
 | 视频 | `generate_video_veo3` | Veo 3 | ⭐ |
 | 视频 | `generate_video_vidu_q2` | Vidu Q2 |  |
 | 视频 | `generate_video_gemini_omni_flash` | Gemini Omni Flash | ⭐ |
+| 视频 | `generate_video_minimax_h3_max` | MiniMax H3 Max | ⭐ |
 | 视频 | `generate_video_wan_v3` | Wan 3.0 | ⭐ |
 | 视频 | `generate_video_wan_v3_prime` | Wan 3.0 Prime | ⭐ |
 | 3D | `generate_3d_tripo` | Tripo |  |
