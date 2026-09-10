@@ -399,6 +399,18 @@ Available models for `--prefer-models`:
 
 | Tool name | Display name |
 |---|---|
+| `generate_image_gpt_image_2_5_flare` | GPT Image 2.5 Flare Auto |
+| `generate_image_gpt_image_2_5_flare_low` | GPT Image 2.5 Flare Low |
+| `generate_image_gpt_image_2_5_flare_medium` | GPT Image 2.5 Flare Medium |
+| `generate_image_gpt_image_2_5_flare_high` | GPT Image 2.5 Flare High |
+| `generate_image_gpt_image_2_5_flare_xhigh` | GPT Image 2.5 Flare xhigh |
+| `generate_image_gpt_image_2_5_flare_max` | GPT Image 2.5 Flare Max |
+| `generate_image_gpt_image_2_5_sunburst` | GPT Image 2.5 Sunburst Auto |
+| `generate_image_gpt_image_2_5_sunburst_low` | GPT Image 2.5 Sunburst Low |
+| `generate_image_gpt_image_2_5_sunburst_medium` | GPT Image 2.5 Sunburst Medium |
+| `generate_image_gpt_image_2_5_sunburst_high` | GPT Image 2.5 Sunburst High |
+| `generate_image_gpt_image_2_5_sunburst_xhigh` | GPT Image 2.5 Sunburst xhigh |
+| `generate_image_gpt_image_2_5_sunburst_max` | GPT Image 2.5 Sunburst Max |
 | `generate_image_gpt_image_2` | GPT Image 2 Auto |
 | `generate_image_gpt_image_2_low` | GPT Image 2 Low |
 | `generate_image_gpt_image_2_medium` | GPT Image 2 Medium |

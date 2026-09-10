@@ -191,6 +191,18 @@ Agent が使用するモデルを制御する 3 つの方法：
 
 | カテゴリ | Tool name | 表示名 | プレミアム |
 |---|---|---|---|
+| 画像 | `generate_image_gpt_image_2_5_flare` | GPT Image 2.5 Flare Auto |  |
+| 画像 | `generate_image_gpt_image_2_5_flare_low` | GPT Image 2.5 Flare Low |  |
+| 画像 | `generate_image_gpt_image_2_5_flare_medium` | GPT Image 2.5 Flare Medium |  |
+| 画像 | `generate_image_gpt_image_2_5_flare_high` | GPT Image 2.5 Flare High |  |
+| 画像 | `generate_image_gpt_image_2_5_flare_xhigh` | GPT Image 2.5 Flare xhigh |  |
+| 画像 | `generate_image_gpt_image_2_5_flare_max` | GPT Image 2.5 Flare Max |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst` | GPT Image 2.5 Sunburst Auto |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst_low` | GPT Image 2.5 Sunburst Low |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst_medium` | GPT Image 2.5 Sunburst Medium |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst_high` | GPT Image 2.5 Sunburst High |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst_xhigh` | GPT Image 2.5 Sunburst xhigh |  |
+| 画像 | `generate_image_gpt_image_2_5_sunburst_max` | GPT Image 2.5 Sunburst Max |  |
 | 画像 | `generate_image_gpt_image_2` | GPT Image 2 Auto |  |
 | 画像 | `generate_image_gpt_image_2_low` | GPT Image 2 Low |  |
 | 画像 | `generate_image_gpt_image_2_medium` | GPT Image 2 Medium |  |

@@ -188,6 +188,18 @@ python3 scripts/agent_skill.py threads
 
 | 类别 | Tool name | 显示名 | 会员专属 |
 |---|---|---|---|
+| 图片 | `generate_image_gpt_image_2_5_flare` | GPT Image 2.5 Flare Auto |  |
+| 图片 | `generate_image_gpt_image_2_5_flare_low` | GPT Image 2.5 Flare Low |  |
+| 图片 | `generate_image_gpt_image_2_5_flare_medium` | GPT Image 2.5 Flare Medium |  |
+| 图片 | `generate_image_gpt_image_2_5_flare_high` | GPT Image 2.5 Flare High |  |
+| 图片 | `generate_image_gpt_image_2_5_flare_xhigh` | GPT Image 2.5 Flare xhigh |  |
+| 图片 | `generate_image_gpt_image_2_5_flare_max` | GPT Image 2.5 Flare Max |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst` | GPT Image 2.5 Sunburst Auto |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst_low` | GPT Image 2.5 Sunburst Low |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst_medium` | GPT Image 2.5 Sunburst Medium |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst_high` | GPT Image 2.5 Sunburst High |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst_xhigh` | GPT Image 2.5 Sunburst xhigh |  |
+| 图片 | `generate_image_gpt_image_2_5_sunburst_max` | GPT Image 2.5 Sunburst Max |  |
 | 图片 | `generate_image_gpt_image_2` | GPT Image 2 Auto |  |
 | 图片 | `generate_image_gpt_image_2_low` | GPT Image 2 Low |  |
 | 图片 | `generate_image_gpt_image_2_medium` | GPT Image 2 Medium |  |
