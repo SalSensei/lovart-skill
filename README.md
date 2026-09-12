@@ -12,11 +12,13 @@
 </p>
 <br/>
 
-> AI Agent Skills for [Lovart](https://lovart.ai) — generate images, videos, and audio from your AI coding assistant.
+> Lovart AI Agent Skills — generate images, video, and audio from any
+> AI coding assistant. One `SKILL.md`, two install paths.
 
 ## ✨ What it does
 
-This skill connects [OpenClaw](https://openclaw.com) (and other AI coding assistants) to Lovart's Agent OpenAPI, enabling:
+This skill connects your AI coding assistant to Lovart's Agent OpenAPI.
+It works with both the [OpenClaw](https://openclaw.com) and [Hermes Agent](https://github.com/l3ad3r1/Hermes-skills) ecosystems out of the box, and also runs from any assistant that can invoke Python scripts. Capabilities:
 
 - 🖼️ **Image generation** — posters, logos, illustrations, banners, mockups, etc.
 - 🎬 **Video generation** — clips, animations, product videos
@@ -27,11 +29,15 @@ This skill connects [OpenClaw](https://openclaw.com) (and other AI coding assist
 
 ## 📦 Install
 
-```bash
-npx skills add lovartai/lovart-skill
-```
+Choose the path that matches your agent ecosystem. **OpenClaw is the
+officially published distribution** (`npx skills add` pulls the
+latest release from ClawHub); **Hermes Agent is a manual install**
+you copy into your skills tree. Both paths install the same skill
+files; the difference is only in how the agent discovers and invokes
+them.
 
-Then set your environment variables:
+Set your credentials once either way — they are the same in both
+ecosystems:
 
 ```bash
 export LOVART_ACCESS_KEY="ak_xxx"
@@ -40,56 +46,38 @@ export LOVART_SECRET_KEY="sk_xxx"
 
 Get your AK/SK from the Lovart platform (Avatar menu -> AK/SK Management).
 
-> 🎉 **That's it!** The skill files will be added to your project. Your AI Agent will auto-discover and invoke them — no manual script execution needed.
-
-## 🤖 Install — Hermes Agent
-
-[Hermes Agent](https://github.com/l3ad3r1/Hermes-skills) discovers skills
-via `~/.hermes/skills/<category>/<skill-name>/SKILL.md`. This repository's
-`SKILL.md` ships dual-format frontmatter so it works in both ecosystems
-without modification.
+### OpenClaw
 
 ```bash
-# 1. Clone this repo
-git clone https://github.com/lovartai/lovart-skill.git
-cd lovart-skill
-
-# 2. Copy into your Hermes skills tree
-cp -r skills/lovart-skill ~/.hermes/skills/design/lovart-api
-
-# 3. Set credentials (add to your shell rc)
-export LOVART_ACCESS_KEY="ak_xxx"
-export LOVART_SECRET_KEY="sk_xxx"
+npx skills add lovartai/lovart-skill
 ```
 
-After install, the agent will auto-trigger on any visual / audio creation
-request. From your Hermes chat:
+Pulls the latest published release from ClawHub. OpenClaw installs
+the skill into your project and auto-discovers it through its
+`metadata.openclaw` block.
+
+### Hermes Agent
+
+Hermes Agent discovers skills from `~/.hermes/skills/<category>/<skill-name>/SKILL.md`.
+This is a **manual / community install** — there is no automated
+publish target in this repo yet.
+
+```bash
+git clone https://github.com/lovartai/lovart-skill.git
+cd lovart-skill
+cp -r skills/lovart-skill ~/.hermes/skills/design/lovart-api
+```
+
+Hermes auto-triggers on any visual / audio creation request through
+its `metadata.hermes.tags` block. From your Hermes chat:
 
 ```
 /lovart-api draw a cyberpunk cat in neon city
 ```
 
-> 💡 The skill's `metadata.hermes.tags` (image-generation, video-generation,
-> audio-generation, 3d, design, ...) makes it discoverable via Hermes' tag
-> search as well.
-
-### Dual-format compatibility
-
-The `SKILL.md` frontmatter declares **both** ecosystems simultaneously:
-
-```yaml
-metadata:
-  hermes:    { tags: [...], related_skills: [] }
-  openclaw:  { emoji: "🎨", requires: {...}, primaryEnv: ... }
-prerequisites:
-  commands: [python3]
-  env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
-  python: []
-```
-
-OpenClaw installations read `metadata.openclaw` and ignore the rest;
-Hermes reads `metadata.hermes` and `prerequisites`. No behavioral fork,
-no duplicate maintenance.
+> 💡 The two paths install identical skill files — the `SKILL.md`
+> ships dual-format frontmatter, so the same artifact serves both
+> ecosystems without modification.
 
 ## 🚀 Quick start
 
@@ -186,7 +174,30 @@ You can control which model the Agent uses in three ways:
 
 1. **In the prompt** (simple) — `"generate ocean waves video using kling"`
 2. **`--prefer-models`** (soft preference) — `'{"IMAGE":["generate_image_midjourney"]}'`
-3. **`--include-tools`** (hard constraint) — `upscale_image`
+3. **`--include-tools`** (strongest steer, not an enforced whitelist) — `upscale_image`
+
+`--include-tools` is a strong instruction the Agent normally follows, but it may still pick
+another tool — for example after the requested one rejects the input. `--exclude-tools` is
+accepted for forward compatibility and currently has no effect on tool selection.
+
+## 🖼️ Reference subjects
+
+`--attachments` takes any image URL and each new URL is reviewed again. For a reference that
+already lives in the asset library, pass its library URL with `--subjects` so the existing
+review is reused and the Agent knows the subject is approved:
+
+```bash
+python3 scripts/agent_skill.py chat --prompt "put these characters in one scene" \
+  --subjects '[{"url":"LIBRARY_URL","asset_id":"asset_xxx","display_name":"Hero"}]' \
+  --json --download
+```
+
+## ⚠️ Rejected tool calls
+
+A run can finish `done` and still have had tool calls rejected — the Agent may drop a
+reference or switch models and carry on. The result carries a `failures` array plus a
+one-line `warning`. Read it before reporting success; retrying a rejected reference with the
+same input will fail again and still costs credits.
 
 Available models:
 
@@ -315,17 +326,30 @@ Settings and thread history are persisted at `~/.lovart/state.json`:
 
 ## 🤖 Integration
 
-### OpenClaw (recommended)
+The skill works with multiple agent ecosystems. Pick the one that
+matches yours.
+
+### OpenClaw
 
 ```bash
 npx skills add lovartai/lovart-skill
 ```
 
-This skill is designed as a first-class [OpenClaw](https://openclaw.com) skill. After installation, the AI Agent will auto-discover and invoke it — no extra configuration needed beyond setting the env vars.
+OpenClaw reads `metadata.openclaw` from `SKILL.md` and auto-discovers
+the skill after install — no extra configuration beyond the env vars.
+
+### Hermes Agent
+
+Drop the skill into `~/.hermes/skills/<category>/<skill-name>/` (see
+the Hermes subsection under `Install` above). Hermes reads
+`metadata.hermes` and routes visual / audio creation requests to the
+skill via its `/lovart-api` slash command.
 
 ### Other AI assistants
 
-The skill also works with Claude Code, Cursor, and any assistant that can invoke Python scripts. See `SKILL.md` for the full integration contract.
+The skill also works with Claude Code, Cursor, and any assistant that
+can invoke Python scripts directly. See `SKILL.md` for the full
+integration contract.
 
 ## 📁 Project structure
 
@@ -353,11 +377,11 @@ lovart-skill/
 ## 🏗️ Architecture
 
 ```
-User -> OpenClaw / Claude Code / other AI assistant
-          -> scripts/agent_skill.py (this skill)
-            -> Lovart OpenAPI (AK/SK HMAC-SHA256 auth)
-              -> Lovart AI Agent (model selection, orchestration)
-                -> Generated images / videos / audio
+OpenClaw / Hermes Agent / Claude Code / other AI assistant
+  -> scripts/agent_skill.py (this skill)
+    -> Lovart OpenAPI (AK/SK HMAC-SHA256 auth)
+      -> Lovart AI Agent (model selection, orchestration)
+        -> Generated images / videos / audio
 ```
 
 ## 🤝 Contributing

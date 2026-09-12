@@ -12,11 +12,11 @@
 </p>
 <br/>
 
-> [Lovart](https://lovart.ai) の AI Agent Skills — AI コーディングアシスタントから画像・動画・音声を簡単に生成。
+> Lovart の AI Agent Skills — お使いの AI コーディングアシスタントから画像・動画・音声を生成。1 つの `SKILL.md` で 2 つのインストール経路に対応。
 
 ## ✨ 機能
 
-[OpenClaw](https://openclaw.com)（およびその他の AI コーディングアシスタント）を Lovart Agent OpenAPI に接続します：
+本スキルは AI コーディングアシスタントを Lovart Agent OpenAPI に接続します。[OpenClaw](https://openclaw.com) と [Hermes Agent](https://github.com/l3ad3r1/Hermes-skills) の両エコシステムにそのまま対応し、Python スクリプトを呼び出せるその他のアシスタントでも動作します。対応機能：
 
 - 🖼️ **画像生成** — ポスター、ロゴ、イラスト、バナー、モックアップなど
 - 🎬 **動画生成** — ショートクリップ、アニメーション、プロダクトビデオ
@@ -27,11 +27,12 @@
 
 ## 📦 インストール
 
-```bash
-npx skills add lovartai/lovart-skill
-```
+ご利用の agent エコシステムに合わせて経路を選択してください。**OpenClaw は
+公式に配布されているチャネルです**（`npx skills add` で ClawHub から
+最新リリースを取得）。**Hermes Agent は手動でスキルツリーへコピーする
+インストール方法**です。どちらの経路も同じスキルファイルをインストールし、違いは agent がどのように検出し呼び出すかだけです。
 
-環境変数を設定します：
+どちらの経路でも、認証情報は同じものです：
 
 ```bash
 export LOVART_ACCESS_KEY="ak_xxx"
@@ -40,55 +41,32 @@ export LOVART_SECRET_KEY="sk_xxx"
 
 Lovart プラットフォームで AK/SK を取得してください（アバターメニュー -> AK/SK 管理）。
 
-> 🎉 **これだけです！** Skill ファイルがプロジェクトに追加され、AI Agent が自動検出して呼び出します。スクリプトを手動で実行する必要はありません。
-
-## 🤖 インストール — Hermes Agent
-
-[Hermes Agent](https://github.com/l3ad3r1/Hermes-skills) は
-`~/.hermes/skills/<category>/<skill-name>/SKILL.md` でスキルを検出します。
-本リポジトリの `SKILL.md` はデュアルフォーマット frontmatter を採用して
-いるため、両エコシステムでそのまま動作します。
+### OpenClaw
 
 ```bash
-# 1. このリポジトリをクローン
-git clone https://github.com/lovartai/lovart-skill.git
-cd lovart-skill
-
-# 2. Hermes スキルツリーへコピー
-cp -r skills/lovart-skill ~/.hermes/skills/design/lovart-api
-
-# 3. 資格情報を設定(shell rc に追記推奨)
-export LOVART_ACCESS_KEY="ak_xxx"
-export LOVART_SECRET_KEY="sk_xxx"
+npx skills add lovartai/lovart-skill
 ```
 
-インストール後、任意の視覚/音声生成リクエストで Agent が自動起動します。
-Hermes チャットから:
+ClawHub から最新リリースを取得します。OpenClaw はプロジェクトにスキルをインストールし、`metadata.openclaw` ブロックから自動検出します。
+
+### Hermes Agent
+
+Hermes Agent は `~/.hermes/skills/<category>/<skill-name>/SKILL.md` でスキルを検出します。
+これは**手動 / コミュニティインストール**です —— 本リポジトリにはまだ自動公開ターゲットがありません。
+
+```bash
+git clone https://github.com/lovartai/lovart-skill.git
+cd lovart-skill
+cp -r skills/lovart-skill ~/.hermes/skills/design/lovart-api
+```
+
+Hermes は `metadata.hermes.tags` を通じて任意の視覚/音声生成リクエストで自動起動します。Hermes チャットから：
 
 ```
 /lovart-api サイバーパンクな猫を描いて
 ```
 
-> 💡 スキルの `metadata.hermes.tags`(image-generation、video-generation、
-> audio-generation、3d、design 等)により、Hermes のタグ検索でも発見可能です。
-
-### デュアルフォーマット互換性
-
-`SKILL.md` の frontmatter は**両方のエコシステムを同時に**宣言します:
-
-```yaml
-metadata:
-  hermes:    { tags: [...], related_skills: [] }
-  openclaw:  { emoji: "🎨", requires: {...}, primaryEnv: ... }
-prerequisites:
-  commands: [python3]
-  env: [LOVART_ACCESS_KEY, LOVART_SECRET_KEY]
-  python: []
-```
-
-OpenClaw インストールは `metadata.openclaw` のみ読み取り、その他を無視します。
-Hermes は `metadata.hermes` と `prerequisites` を読み取ります。挙動分岐なし、
-二重保守なし。
+> 💡 どちらの経路も同じスキルファイルをインストールします——`SKILL.md` はデュアルフォーマット frontmatter を採用しているため、成果物は両エコシステムでそのまま動作します。
 
 ## 🚀 クイックスタート
 
@@ -185,7 +163,30 @@ Agent が使用するモデルを制御する 3 つの方法：
 
 1. **プロンプトで言及**（最もシンプル）— `"kling で波の動画を生成して"`
 2. **`--prefer-models`**（ソフトプリファレンス）— `'{"IMAGE":["generate_image_midjourney"]}'`
-3. **`--include-tools`**（ハードコンストレイント）— `upscale_image`
+3. **`--include-tools`**（最も強い誘導。強制ホワイトリストではない）— `upscale_image`
+
+`--include-tools` は Agent が通常従う強い指示ですが、指定したツールが入力を拒否した場合など、
+別のツールを選ぶことがあります。`--exclude-tools` は将来の互換性のために受け付けますが、
+現在はツール選択に影響しません。
+
+## 🖼️ アセットライブラリの被写体を参照する
+
+`--attachments` は任意の画像 URL を受け付け、新しい URL は毎回審査されます。参照がすでに
+アセットライブラリにある場合は `--subjects` でライブラリの URL を渡すと、既存の審査結果が
+再利用され、Agent もその被写体が承認済みだと分かります:
+
+```bash
+python3 scripts/agent_skill.py chat --prompt "このキャラクターを同じシーンに" \
+  --subjects '[{"url":"LIBRARY_URL","asset_id":"asset_xxx","display_name":"Hero"}]' \
+  --json --download
+```
+
+## ⚠️ 拒否されたツール呼び出し
+
+実行が `done` で終わっても、途中でツール呼び出しが拒否されていることがあります。Agent は参照を
+外したりモデルを切り替えたりして完了できるためです。結果には `failures` 配列と 1 行の `warning`
+が付きます。成功と報告する前に確認してください。拒否された参照は同じ入力で再試行しても再び拒否され、
+クレジットは消費されます。
 
 利用可能なモデル：
 
@@ -314,17 +315,23 @@ Skill はネットワークの一時的なエラーに対して自動リトラ�
 
 ## 🤖 統合方法
 
-### OpenClaw（推奨）
+本スキルは複数の agent エコシステムに対応しています。環境に合わせて選択してください。
+
+### OpenClaw
 
 ```bash
 npx skills add lovartai/lovart-skill
 ```
 
-本 skill は [OpenClaw](https://openclaw.com) のファーストクラス skill として設計されています。インストール後、AI Agent が自動検出して呼び出します。環境変数の設定以外、追加の設定は不要です。
+OpenClaw は `SKILL.md` の `metadata.openclaw` を読み取り、インストール後に自動検出します。環境変数の設定以外、追加の設定は不要です。
+
+### Hermes Agent
+
+スキルを `~/.hermes/skills/<category>/<skill-name>/` に配置します（詳細は上記の `インストール` セクションの Hermes サブセクションを参照）。Hermes は `metadata.hermes` を読み取り、`/lovart-api` スラッシュコマンドで視覚/音声生成リクエストを本スキルにルーティングします。
 
 ### その他の AI アシスタント
 
-Claude Code、Cursor など、Python スクリプトを実行可能なアシスタントにも対応しています。完全な統合仕様は `SKILL.md` を参照してください。
+Claude Code、Cursor など、Python スクリプトを直接実行できるアシスタントにも対応しています。完全な統合仕様は `SKILL.md` を参照してください。
 
 ## 📁 プロジェクト構成
 
@@ -352,7 +359,7 @@ lovart-skill/
 ## 🏗️ アーキテクチャ
 
 ```
-ユーザー -> OpenClaw / Claude Code / その他 AI アシスタント
+ユーザー -> OpenClaw / Hermes Agent / Claude Code / その他 AI アシスタント
               -> scripts/agent_skill.py (本 skill)
                 -> Lovart OpenAPI (AK/SK HMAC-SHA256 署名認証)
                   -> Lovart AI Agent (モデル選択、ワークフロー編成)
