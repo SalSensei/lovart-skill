@@ -406,6 +406,18 @@ Available models for `--prefer-models`:
 
 | Tool name | Display name |
 |---|---|
+| `generate_image_gpt_image_2_6_flare` | GPT Image 2.6 Flare Auto |
+| `generate_image_gpt_image_2_6_flare_low` | GPT Image 2.6 Flare Low |
+| `generate_image_gpt_image_2_6_flare_medium` | GPT Image 2.6 Flare Medium |
+| `generate_image_gpt_image_2_6_flare_high` | GPT Image 2.6 Flare High |
+| `generate_image_gpt_image_2_6_flare_xhigh` | GPT Image 2.6 Flare xhigh |
+| `generate_image_gpt_image_2_6_flare_max` | GPT Image 2.6 Flare Max |
+| `generate_image_gpt_image_2_6_sunburst` | GPT Image 2.6 Sunburst Auto |
+| `generate_image_gpt_image_2_6_sunburst_low` | GPT Image 2.6 Sunburst Low |
+| `generate_image_gpt_image_2_6_sunburst_medium` | GPT Image 2.6 Sunburst Medium |
+| `generate_image_gpt_image_2_6_sunburst_high` | GPT Image 2.6 Sunburst High |
+| `generate_image_gpt_image_2_6_sunburst_xhigh` | GPT Image 2.6 Sunburst xhigh |
+| `generate_image_gpt_image_2_6_sunburst_max` | GPT Image 2.6 Sunburst Max |
 | `generate_image_gpt_image_2_5_flare` | GPT Image 2.5 Flare Auto |
 | `generate_image_gpt_image_2_5_flare_low` | GPT Image 2.5 Flare Low |
 | `generate_image_gpt_image_2_5_flare_medium` | GPT Image 2.5 Flare Medium |
@@ -450,6 +462,7 @@ Available models for `--prefer-models`:
 | `generate_video_seedance_v2_0_fast` | Seedance 2.0 Fast |
 | `generate_video_seedance_v2_0_mini` | Seedance 2.0 Mini |
 | `generate_video_kling_v4` | Kling 4.0 |
+| `generate_video_kling_v4_flash` | Kling 4.0 Flash |
 | `generate_video_kling_v3` | Kling 3.0 |
 | `generate_video_kling_v3_omni` | Kling 3.0 Omni |
 | `generate_video_minimax_h3` | MiniMax H3 |
